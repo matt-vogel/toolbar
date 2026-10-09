@@ -37,8 +37,11 @@ def center_room_point(room):
 
     for geom in geo:
         if isinstance(geom, DB.Solid):
-            centroid = geom.ComputeCentroid()
-            break
+            try:
+                centroid = geom.ComputeCentroid()
+                break
+            except Exception:
+                continue
 
     if centroid is None:
         return
